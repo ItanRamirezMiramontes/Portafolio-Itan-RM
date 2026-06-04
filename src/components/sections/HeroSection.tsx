@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Terminal } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { staggerContainer, staggerItem } from "@/utils/animations";
 import profilePic from "@/assets/images/Foto_perfil.jpg";

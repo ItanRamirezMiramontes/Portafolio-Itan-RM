@@ -1,4 +1,4 @@
-import { Technology, NavItem } from '../types';
+import { Technology } from '../types';
 
 export const technologies: Technology[] = [
   // Backend
