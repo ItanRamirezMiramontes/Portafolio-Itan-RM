@@ -1,0 +1,16 @@
+{
+  "name": "Itan Ramirez | Ingeniería de Software",
+  "short_name": "Itan Ramirez ",
+  "description": "Portafolio profesional de ingeniería de software y consultoría tech.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
