@@ -96,6 +96,8 @@ const HeroSection = () => {
               src={profilePic}
               alt="Itan Ramirez"
               className="w-full h-full object-contain"
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
         </div>

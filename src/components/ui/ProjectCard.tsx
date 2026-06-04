@@ -135,7 +135,7 @@ const ProjectCard = ({ project, featured, onSelect }: ProjectCardProps) => {
         <button
           type="button"
           onClick={() => onSelect(project)}
-          className="block h-full flex flex-col text-left"
+          className="h-full flex flex-col text-left"
         >
           {Content}
         </button>

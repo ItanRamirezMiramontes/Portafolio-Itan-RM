@@ -92,9 +92,4 @@ export const technologies: Technology[] = [
   { id: '21', name: 'Documentación técnica', category: 'product', level: 'proficient' },
 ];
 
-export const navItems: NavItem[] = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Trayectoria', href: '/trajectory' },
-  { label: 'Proyectos', href: '/projects' },
-  { label: 'Servicios', href: '/services' },
-];
+

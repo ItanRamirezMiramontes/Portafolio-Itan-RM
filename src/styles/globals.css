@@ -4,11 +4,12 @@
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
-    
-    --primary: 222.2 47.4% 11.2%; /* Deep Navy/Slate */
+
+    --primary: 222.2 47.4% 11.2%;
+    /* Deep Navy/Slate */
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-    
+
     --radius: 0.5rem;
   }
 
@@ -60,16 +61,4 @@
   }
 }
 
-@layer utilities {
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-}
+@layer utilities {}

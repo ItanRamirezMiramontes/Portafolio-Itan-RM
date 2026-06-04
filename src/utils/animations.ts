@@ -55,6 +55,9 @@ export const scaleIn: Variants = {
 };
 
 export const hoverLift = {
-  whileHover: { y: -4, transition: { duration: 0.2, ease: 'easeInOut' } },
-  boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.2)',
+  whileHover: {
+    y: -4,
+    boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.2)',
+    transition: { duration: 0.2, ease: 'easeInOut' },
+  },
 };

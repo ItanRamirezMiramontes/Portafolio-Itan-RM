@@ -1,6 +1,7 @@
-import { Github, Linkedin } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { navItems } from '@/data/technologies';
+import { Github, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { navItems } from "@/data/navigation";
+import { contactInfo } from "@/data/contact";
 
 const Footer = () => {
   return (
@@ -11,7 +12,9 @@ const Footer = () => {
             <Link to="/" className="text-xl font-mono font-bold tracking-tight">
               IT<span className="text-slate-400">.</span>
             </Link>
-            <p className="text-sm text-slate-500">Ingeniería de software con enfoque de producto.</p>
+            <p className="text-sm text-slate-500">
+              Ingeniería de software con enfoque de producto.
+            </p>
           </div>
 
           <div className="flex gap-8">
@@ -28,7 +31,7 @@ const Footer = () => {
 
           <div className="flex gap-4">
             <a
-              href="https://github.com"
+              href={contactInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all"
@@ -37,7 +40,7 @@ const Footer = () => {
               <Github size={20} />
             </a>
             <a
-              href="https://linkedin.com"
+              href={contactInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-all"
@@ -49,7 +52,10 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} ITAN RAMÍREZ. TODOS LOS DERECHOS RESERVADOS.</p>
+          <p>
+            © {new Date().getFullYear()} ITAN RAMÍREZ. TODOS LOS DERECHOS
+            RESERVADOS.
+          </p>
           <p>CONSTRUIDO CON REACT + TAILWIND + FRAMER MOTION</p>
         </div>
       </div>

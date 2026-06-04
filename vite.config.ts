@@ -15,13 +15,17 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es2020',
+    minify: 'terser',
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          motion: ['framer-motion'],
-          ui: ['lucide-react'], // Simplified UI chunk for now
+          'react-core': ['react', 'react-dom'],
+          'react-router': ['react-router-dom'],
+          'framer': ['framer-motion'],
+          'icons': ['lucide-react'],
+          'helmet': ['react-helmet-async'],
         },
       },
     },

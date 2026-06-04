@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import type { Project } from "@/types";
 import ProjectCard from "@/components/ui/ProjectCard";
@@ -32,26 +33,45 @@ const Projects = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Body scroll lock when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedProject]);
+
   useEffect(() => {
     if (selectedProject) {
       setActiveImageIndex(0);
     }
   }, [selectedProject]);
 
-  // Extract all unique tags
+  // Extract all unique tags (limit to top 10 most frequent)
   const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    const excludedTags = ["CACEI", "UAG", "CodeCup", "Codecup"]; // Including variants just in case
+    const tagFrequency: { [key: string]: number } = {};
+    const excludedTags = ["CACEI", "UAG", "CodeCup", "Codecup"];
 
     projects.forEach((p) => {
       p.tags.forEach((t) => {
         if (!excludedTags.includes(t)) {
-          tags.add(t);
+          tagFrequency[t] = (tagFrequency[t] || 0) + 1;
         }
       });
     });
 
-    return ["all", ...Array.from(tags).sort()];
+    // Sort by frequency and take top 10
+    const sortedTags = Object.entries(tagFrequency)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .map(([tag]) => tag);
+
+    return ["all", ...sortedTags.sort()];
   }, []);
 
   const filteredProjects = projects.filter(
@@ -133,6 +153,9 @@ const Projects = () => {
                   transition={{ duration: 0.2 }}
                   className="w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-[2rem] bg-white shadow-2xl"
                   onClick={(event) => event.stopPropagation()}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={selectedProject.title}
                 >
                   <div className="flex flex-col gap-4 border-b border-slate-200 p-6 md:flex-row md:items-start md:justify-between">
                     <div>
@@ -174,6 +197,7 @@ const Projects = () => {
                                   src={activeImage}
                                   alt={`${selectedProject.title} imagen ${activeImageIndex + 1}`}
                                   className="max-h-[520px] w-full max-w-full object-contain"
+                                  loading="lazy"
                                 />
                                 {gallery.length > 1 && (
                                   <>
@@ -190,7 +214,7 @@ const Projects = () => {
                                       className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-slate-700 shadow-sm transition hover:bg-white"
                                       aria-label="Imagen anterior"
                                     >
-                                      ‹
+                                      <ChevronLeft size={24} />
                                     </button>
                                     <button
                                       type="button"
@@ -205,7 +229,7 @@ const Projects = () => {
                                       className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-slate-700 shadow-sm transition hover:bg-white"
                                       aria-label="Imagen siguiente"
                                     >
-                                      ›
+                                      <ChevronRight size={24} />
                                     </button>
                                   </>
                                 )}
@@ -243,6 +267,7 @@ const Projects = () => {
                                         src={image}
                                         alt={`${selectedProject.title} miniatura ${index + 1}`}
                                         className="h-24 w-full object-contain bg-slate-100"
+                                        loading="lazy"
                                       />
                                     </button>
                                   ))}
